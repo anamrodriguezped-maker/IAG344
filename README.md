@@ -1,12 +1,12 @@
 # Clase IA
 ## 🤖Comandos consola
-### ![imagen de Python](PERSONAL/images.jpg)
+### ![imagen de Python](images.jpg)
 ```
 python --version
 
 ```
 ## 🤖Comandos 
-### ![imagen de git](PERSONAL/git.jpg)
+### ![imagen de git](git.jpg)
 ```git
 git --version
 git init (solo lo hago una vez por cada vez que quiero tener una version, pone en verde y oculta)
@@ -17,7 +17,7 @@ A añadido
 M modificaciones
 U Nuevo
 ```
-![git cat](PERSONAL/image.png)
+![git cat](image.png)
 ```
 git branch -M main
 git remote add origin https://github.com/anamrodriguezped-maker/IAG344.git
@@ -39,5 +39,19 @@ cd PROFES
 git clone https://github.com/fernandogh7508/IAG344
 cd .. (Devolverme)
 cd PERSONAL (AQUI SIII)
+
+--v2
+cd PERSONAL
+git status
+git remote -v
+git push
+git add .
+git status
+git commit -m "v2"
+git push 
+
+li*3
+ctrl+shif+k
+ctrl+x
 
 ```
