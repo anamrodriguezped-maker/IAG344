@@ -12,7 +12,7 @@ git --version
 git init (solo lo hago una vez por cada vez que quiero tener una version, pone en verde y oculta)
 git add . (cuales para comprimir)
 git commit -m "IAG344 v1" (version del archivo guardado)
-git push actualiza **
+git push actualiza ** y sube la información
 A añadido
 M modificaciones
 U Nuevo
