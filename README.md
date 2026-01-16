@@ -53,5 +53,26 @@ git push
 li*3
 ctrl+shif+k
 ctrl+x
+```
+#😎😎activar y desactivar
+```
 
+pip list -> LISTA  LA VERSION DE PIP -> le pertenece a python
+python entrenamiento.py ABRIR PYTHON
+DIR -> comandos cdm
+env3.13.9/scripts/activate -> activar el entorno virtual
+
+```
+#Comandos CDM
+| COMANDO       | DESCRIPCION          |
+| ------------- | -------------------- |
+| cd            | cambio de directorio |
+| dir           | listar               |
+| alt+shif+f    | formatear table      |
+| windows+punto |        emoticones              | 
+ |alt+shif+A|comentarios en cada lenguaje
+|       alt+z        |   justifica                 |
+
+pip install pytest
+pytest
 ```
