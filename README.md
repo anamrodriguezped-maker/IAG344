@@ -76,3 +76,8 @@ env3.13.9/scripts/activate -> activar el entorno virtual
 pip install pytest
 pytest
 ```
+```
+snippets: 
+PYTHON
+SE CREO ese separador lindo y kiut
+```
