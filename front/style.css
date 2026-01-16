@@ -1,0 +1,42 @@
+/* Estilo para toda la web */
+*{
+    margin: 0; /* quitar margenes por defecto */
+    padding: 0; /* quitar rellenos por defecto */
+    
+}
+/* estilo header*/
+.header{
+    background: #111827; /* color de fondo en hexadecimal */
+        font-size: 20px; /* tamaño en pixeles */
+    color: bisque; /* color de letra */
+    padding: 16px 24px; /* Espacio interno */
+    display: flex; /* flexibilidad  */
+    align-items: center;/* elementos de una fila */
+    justify-content: space-between; /* pone las cosas a la izquierda centro o derecha */
+}
+/* estilo titulo fuente */
+.nombre{
+    font-size: 24px; /* tamaño en pixeles */
+}
+/* enlaces del menu*/
+.navegacion{
+    color: beige;
+    text-decoration: none;/* quita el subrayado */
+    margin-left: 12px; /* espacio entre links */
+    opacity: 0.85;
+}
+.navegacion:hover{
+    opacity: 1;
+    color: burlywood;
+    text-decoration: underline;
+    background-color: rgb(155, 28, 128);
+    border-radius: 5px;
+}
+.btn-primary{
+    background-color: rgb(155, 28, 128)!important;
+    border-color: rgb(32, 2, 26);
+}
+.btn-primary:hover{
+    background-color: rgb(201, 115, 183)!important;
+    
+}
