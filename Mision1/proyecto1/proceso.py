@@ -22,6 +22,7 @@ def merge_name(name, lastname):
     if lastname is None:
         lastname=""
     return f"{name} {lastname}".strip()
+
 #=====================================
 # 😎  ANA MARIA RODRIGUEZ
 #excel cargar y procesar
