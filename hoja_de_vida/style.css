@@ -2,6 +2,15 @@
 *{
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
+/* opacidad de la barra de progreso */
 .bg-primary{
     background-color: #0a071f !important;
+}
+
+.progress{
+    background-color: #efefef;
+}
+/* cambio texto color de experiencia */
+.text-primary{
+    color: #3498bd !important;
 }
