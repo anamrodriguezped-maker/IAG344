@@ -83,7 +83,7 @@ SE CREO ese separador lindo y kiut
 
 ws.save(path) 
 define process_excel_save()
--m venv env13.5.9 -> Crea el etorno virtual
+python -m venv env13.5.9 -> Crea el etorno virtual
 descargar librerias
 pip install (Nombre de la libreria)
 openpyxl

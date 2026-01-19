@@ -42,6 +42,7 @@ def process_excel(path):
         ws[f"C{row}"].value
         )
         wb.save(path) 
+        
 def process_excel_safe(path):
     try:
         process_excel(path)
