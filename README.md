@@ -94,3 +94,6 @@ libreria instalar
 crear el .exe
 `pyinstaller --onefile --windowed app.py`
 ```
+
+<!-- importante GIT HUB -->
+😎github pages
