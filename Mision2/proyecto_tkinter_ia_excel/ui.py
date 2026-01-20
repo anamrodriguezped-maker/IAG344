@@ -2,21 +2,8 @@
 # Capa de interfaz gráfica (Tkinter)
 
 import tkinter as tk
-#CAMBIOS  filedialog, messagebox
-from tkinter import messagebox, filedialog
+from tkinter import messagebox,filedialog
 from controller import procesar_instruccion
-#PUSE ESTE proceso
-from processor import process_excel_safe
-
-def seleccionar_excel():
-    return filedialog.askopenfilename(
-    title="Seleccionar archivo Excel",
-    filetypes=[("Archivo Excel","*.xlsx")]
-    )
-
-def on_clic_procesar():
-    archivo = seleccionar_excel()
-    messagebox.showinfo("Archivo seleccionado", archivo)
 
 
 def iniciar_app():
@@ -24,21 +11,35 @@ def iniciar_app():
     root = tk.Tk()
     root.title("Procesador Excel con IA")
     root.geometry("500x300")
-
-    boton = tk.Button(
+    # Etiqueta
+    tk.Label(root, text="Escriba una instrucción en lenguaje natural").pack(pady=10)
+    
+    def seleccionar_excel():
+        path= filedialog.askopenfilename(
+        title="Seleccionar archivo Excel",
+        filetypes=[("Archivo Excel","*.xlsx")]
+        )
+        if path:
+           #messagebox.showinfo("Resultado", path)
+           path_label.config(text=path)
+    
+    boton=tk.Button(
         root,
-        text="seleccionar archivo excel",
-        command=on_clic_procesar,
+        text="Seleccionar archivo Excel",
+        command=seleccionar_excel,
         width=30,
         height=2
     )
-    boton.pack(pady=60)
-
-    # Etiqueta2
-   #tk.Label(root, text=archivo).pack(pady=10)
-
-    # Etiqueta
-    tk.Label(root, text="Escriba una instrucción en lenguaje natural").pack(pady=10)
+    path_label=tk.Label(root,
+                         text="sin archivo",
+                         width=30,
+                         height=2
+                         )
+    path_label.pack(pady=10)
+    
+    boton.pack(pady=15)
+     # Etiqueta path
+    
 
     # Campo de texto
     entrada = tk.Entry(root, width=60)
@@ -47,14 +48,13 @@ def iniciar_app():
     # Acción del botón
     def ejecutar():
         texto = entrada.get()
-        ruta=seleccionar_excel()
-        exito, mensaje = procesar_instruccion(texto, ruta)
+        path=path_label.cget("text")
+        exito, mensaje = procesar_instruccion(texto,path)
 
         if exito:
             messagebox.showinfo("Resultado", mensaje)
         else:
             messagebox.showerror("Error", mensaje)
-
 
     # Botón
     tk.Button(root, text="Ejecutar instrucción", command=ejecutar).pack(pady=20)

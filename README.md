@@ -61,6 +61,8 @@ pip list -> LISTA  LA VERSION DE PIP -> le pertenece a python
 python entrenamiento.py ABRIR PYTHON
 DIR -> comandos cdm
 env3.13.9/scripts/activate -> activar el entorno virtual
+cd ..
+
 
 ```
 #Comandos CDM
