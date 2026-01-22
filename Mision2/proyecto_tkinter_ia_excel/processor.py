@@ -4,9 +4,9 @@
 from openpyxl import load_workbook
 
 
-def ejecutar_accion(instruccion,path):
+def ejecutar_accion(instruccion):
     # Abre el archivo de ejemplo
-    wb = load_workbook(path)
+    wb = load_workbook("ejemplo.xlsx")
     ws = wb.active
 
     if instruccion["action"] == "clean_id":
@@ -20,4 +20,4 @@ def ejecutar_accion(instruccion,path):
             apellido = ws["B" + str(fila)].value or ""
             ws["C" + str(fila)] = f"{nombre} {apellido}".strip()
 
-    wb.save(path)
+    wb.save("ejemplo.xlsx")
