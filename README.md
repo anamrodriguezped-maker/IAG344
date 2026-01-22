@@ -99,3 +99,33 @@ crear el .exe
 
 <!-- importante GIT HUB -->
 😎github pages
+
+<!-- excel trabajado en python -->
+#LIBRERIAS
+--
+import pandas as pd #pip install pandas
+--
+df =pd.read_csv("./dataset.csv")
+df.head(5)
+--
+df.describe()
+--
+df["favorites"]
+--
+df.loc[0:2]
+--
+df.loc[[0,1,7]]
+--
+df.loc[[1,7],["favorites"]]
+--
+#seleccionar por condición
+df[df["favorites"]>400]
+--
+df[(df["favorites"]>400)&(df["mentions"]>20)]
+--
+df.loc[9:19][(df.loc[9:19]["favorites"]>400)&(df.loc[9:19]["mentions"]>9)]
+--
+cls limpiar el terminal
+
+python
+C:\Users\HP\AppData\Local\Programs\Python\Python313\python.exe
