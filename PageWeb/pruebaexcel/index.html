@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario a Excel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Registro de datos</h2>
+
+<form id="formulario">
+    <input type="text" id="nombre" placeholder="Nombre" required>
+    <input type="number" id="edad" placeholder="Edad" required>
+    <input type="email" id="correo" placeholder="Correo" required>
+
+    <button type="submit">Agregar</button>
+</form>
+
+<button onclick="exportarExcel()">Exportar a Excel</button>
+
+<div id="chatbot">
+    <div id="chat-header">💬 Chatbot</div>
+
+    <div id="chat-body"></div>
+
+    <div id="chat-input">
+        <input type="text" id="mensaje" placeholder="Escribe tu mensaje...">
+        <button onclick="enviarMensaje()">Enviar</button>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="javascripts.js"></script>
+</body>
+</html>
