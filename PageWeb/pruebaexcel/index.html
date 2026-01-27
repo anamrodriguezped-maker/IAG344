@@ -19,16 +19,60 @@
 
 <button onclick="exportarExcel()">Exportar a Excel</button>
 
-<div id="chatbot">
-    <div id="chat-header">💬 Chatbot</div>
+<!-- prueba icono -->
+<!-- Botón flotante -->
+<div id="chat-button"> <img src="img/asistente.png" alt="asistente" width="80px" height="80px"></div>
 
-    <div id="chat-body"></div>
+<!-- Ventana de chat -->
+<div id="chat-box">
+  <div id="chat-header" >
+    <span><strong>Chat</strong></span>
+    <button id="close-chat">✖️</button>
+  </div>
 
-    <div id="chat-input">
-        <input type="text" id="mensaje" placeholder="Escribe tu mensaje...">
-        <button onclick="enviarMensaje()">Enviar</button>
-    </div>
+  <div id="chat-messages">
+    <p><strong>Bot:</strong> Hola 💕 ¿En qué puedo ayudarte?</p>
+  </div>
+
+  <div id="chat-input">
+    <input type="text" id="message" placeholder="Escribe tu mensaje..." />
+    <button id="send"><strong>Enviar</strong></button>
+  </div>
 </div>
+ <!-- prueba icono -->
+ <script>
+  const chatButton = document.getElementById("chat-button");
+  const chatBox = document.getElementById("chat-box");
+  const closeChat = document.getElementById("close-chat");
+  const sendBtn = document.getElementById("send");
+  const messageInput = document.getElementById("message");
+  const messages = document.getElementById("chat-messages");
+
+  chatButton.addEventListener("click", () => {
+    chatBox.style.display = "flex";
+  });
+
+  closeChat.addEventListener("click", () => {
+    chatBox.style.display = "none";
+  });
+
+  sendBtn.addEventListener("click", sendMessage);
+
+  function sendMessage() {
+    const text = messageInput.value.trim();
+    if (text === "") return;
+
+    messages.innerHTML += `<p><strong>Tú:</strong> ${text}</p>`;
+    messageInput.value = "";
+    messages.scrollTop = messages.scrollHeight;
+
+    // Respuesta simulada
+    setTimeout(() => {
+      messages.innerHTML += `<p><strong>Bot:</strong> Te leo 💖</p>`;
+      messages.scrollTop = messages.scrollHeight;
+    }, 600);
+  }
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 <script src="javascripts.js"></script>

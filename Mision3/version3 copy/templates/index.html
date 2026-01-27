@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Inteligente</title>
+    <style>
+        /* Botón flotante */
+        #chat-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #6fbf4a;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Ventana de chat */
+        #chat-box {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Header */
+        #close-chat {
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        #chat-header {
+            font-size: 18px;
+            background: #6fbf4a;
+            color: white;
+            padding: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Mensajes */
+        #chat-messages {
+            padding: 10px;
+            height: 250px;
+            overflow-y: auto;
+            font-size: 15px;
+        }
+
+        /* Input */
+        #chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        #chat-input input {
+            font-size: 12px;
+            flex: 1;
+            border: none;
+            padding: 10px;
+            outline: none;
+        }
+
+        #chat-input button {
+            font-size: 15px;
+            border: none;
+            background: #6fbf4a;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Botón flotante -->
+    <div id="chat-button"> <img src="img/asistente.png" alt="asistente" width="80%" height="80%"></div>
+
+    <!-- Ventana de chat -->
+    <div id="chat-box">
+        <div id="chat-header">
+            <span><strong>Chat</strong></span>
+            <button id="close-chat">✖️</button>
+        </div>
+
+        <div id="chat-messages">
+            <p><strong>Bot:</strong> Hola 💕 ¿En qué puedo ayudarte?</p>
+        </div>
+
+        <div id="chat-input">
+            <input type="text" id="message" placeholder="Escribe tu mensaje..." />
+            <button id="send"><strong>Enviar</strong></button>
+        </div>
+    </div>
+    <!-- prueba icono -->
+
+
+    <script>
+        const chatButton = document.getElementById("chat-button");
+        const chatBox = document.getElementById("chat-box");
+        const closeChat = document.getElementById("close-chat");
+        const sendBtn = document.getElementById("send");
+        const messageInput = document.getElementById("message");
+        const messages = document.getElementById("chat-messages");
+
+        chatButton.addEventListener("click", () => {
+            chatBox.style.display = "flex";
+        });
+
+        closeChat.addEventListener("click", () => {
+            chatBox.style.display = "none";
+        });
+
+        sendBtn.addEventListener("click", sendMessage);
+
+        function sendMessage() {
+            const text = messageInput.value.trim();
+            if (text === "") return;
+
+            messages.innerHTML += `<p><strong>Tú:</strong> ${text}</p>`;
+            messageInput.value = "";
+            messages.scrollTop = messages.scrollHeight;
+
+            // Respuesta simulada
+            setTimeout(() => {
+                messages.innerHTML += `<p><strong>Bot:</strong> Te leo 💖</p>`;
+                messages.scrollTop = messages.scrollHeight;
+            }, 600);
+        }
+    </script>
+
+</body>
+
+</html>
