@@ -89,8 +89,11 @@
 </head>
 
 <body>
+    
     <!-- Botón flotante -->
-    <div id="chat-button"> <img src="img/asistente.png" alt="asistente" width="80%" height="80%"></div>
+    <div id="chat-button"> <img src="/static/img/asistente.png" alt="asistente" width="80%" height="80%">
+        <!-- <img src="img/asistente.png" alt="asistente" width="80%" height="80%"> -->
+    </div>
 
     <!-- Ventana de chat -->
     <div id="chat-box">
@@ -110,40 +113,40 @@
     </div>
     <!-- prueba icono -->
 
+  <script>
+  const chatButton = document.getElementById("chat-button");
+  const chatBox = document.getElementById("chat-box");
+  const closeChat = document.getElementById("close-chat");
+  const sendBtn = document.getElementById("send");
+  const messageInput = document.getElementById("message");
+  const messages = document.getElementById("chat-messages");
 
-    <script>
-        const chatButton = document.getElementById("chat-button");
-        const chatBox = document.getElementById("chat-box");
-        const closeChat = document.getElementById("close-chat");
-        const sendBtn = document.getElementById("send");
-        const messageInput = document.getElementById("message");
-        const messages = document.getElementById("chat-messages");
+  chatButton.addEventListener("click", () => {
+    chatBox.style.display = "flex";
+  });
 
-        chatButton.addEventListener("click", () => {
-            chatBox.style.display = "flex";
-        });
+  closeChat.addEventListener("click", () => {
+    chatBox.style.display = "none";
+  });
 
-        closeChat.addEventListener("click", () => {
-            chatBox.style.display = "none";
-        });
+  sendBtn.addEventListener("click", async (e)=>{ 
+   e.preventDefault();
+   const text = messageInput.value.trim();
+    if (!text) return;
+    messages.innerHTML += `<p><strong>Tú:</strong> ${text}</p>`;
+    messageInput.value = "";
+    
+    const response =await  fetch("/chat",{
+    	method:"POST",
+    	headers:{"Content-Type": "application/x-www-form-urlencoded"},
+    	body:`message=${encodeURIComponent(text)}`
+    });
 
-        sendBtn.addEventListener("click", sendMessage);
-
-        function sendMessage() {
-            const text = messageInput.value.trim();
-            if (text === "") return;
-
-            messages.innerHTML += `<p><strong>Tú:</strong> ${text}</p>`;
-            messageInput.value = "";
-            messages.scrollTop = messages.scrollHeight;
-
-            // Respuesta simulada
-            setTimeout(() => {
-                messages.innerHTML += `<p><strong>Bot:</strong> Te leo 💖</p>`;
-                messages.scrollTop = messages.scrollHeight;
-            }, 600);
-        }
-    </script>
+    const data = await response.json();
+    messages.innerHTML+=`<div class="msg bot"><strong>Bot:</strong> ${data.response}</div>`;
+    messages.scrollTop = messages.scrollHeight;
+    })
+  </script>
 
 </body>
 
