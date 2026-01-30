@@ -129,3 +129,9 @@ cls limpiar el terminal
 
 python
 C:\Users\HP\AppData\Local\Programs\Python\Python313\python.exe
+
+python --version
+python -m venv venv  
+venv\scripts\activate 
+python.exe -m pip install --upgrade pip
+pip install -r requirements.txt

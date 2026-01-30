@@ -6,6 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot Inteligente</title>
     <style>
+        * {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .input {
+            display: block;
+            margin: 10px 0;
+            padding: 8px;
+        }
+
+        .button {
+            display: block;
+            margin: 10px 0;
+            padding: 8px;
+        }
+
         /* Botón flotante */
         #chat-button {
             position: fixed;
@@ -89,7 +106,23 @@
 </head>
 
 <body>
-    
+    <h2>Registro de datos</h2>
+
+    <form id="formulario">
+            <input type="text" id="id" placeholder="Tipo de cedula" required>
+    <input type="text" id="NombreCompleto" placeholder="Nombre completo" required>
+    <input type="number" id="edad" placeholder="Edad" required>
+    <input type="email" id="correo" placeholder="Correo" required>
+    <input type="text" id="Cargo" placeholder="Cargo" required>
+    <input type="date" id="Fecha" placeholder="Fecha" required>
+    <input type="datetime" id="Hora" placeholder="Hora" required>
+    <input type="number" id="Salario" placeholder="Salario" required>
+
+        <button type="submit">Agregar</button>
+    </form>
+
+    <button onclick="exportarExcel()">Exportar a Excel</button>
+
     <!-- Botón flotante -->
     <div id="chat-button"> <img src="/static/img/asistente.png" alt="asistente" width="80%" height="80%">
         <!-- <img src="img/asistente.png" alt="asistente" width="80%" height="80%"> -->
@@ -113,41 +146,43 @@
     </div>
     <!-- prueba icono -->
 
-  <script>
-  const chatButton = document.getElementById("chat-button");
-  const chatBox = document.getElementById("chat-box");
-  const closeChat = document.getElementById("close-chat");
-  const sendBtn = document.getElementById("send");
-  const messageInput = document.getElementById("message");
-  const messages = document.getElementById("chat-messages");
+    <script>
+        const chatButton = document.getElementById("chat-button");
+        const chatBox = document.getElementById("chat-box");
+        const closeChat = document.getElementById("close-chat");
+        const sendBtn = document.getElementById("send");
+        const messageInput = document.getElementById("message");
+        const messages = document.getElementById("chat-messages");
 
-  chatButton.addEventListener("click", () => {
-    chatBox.style.display = "flex";
-  });
+        chatButton.addEventListener("click", () => {
+            chatBox.style.display = "flex";
+        });
 
-  closeChat.addEventListener("click", () => {
-    chatBox.style.display = "none";
-  });
+        closeChat.addEventListener("click", () => {
+            chatBox.style.display = "none";
+        });
 
-  sendBtn.addEventListener("click", async (e)=>{ 
-   e.preventDefault();
-   const text = messageInput.value.trim();
-    if (!text) return;
-    messages.innerHTML += `<p><strong>Tú:</strong> ${text}</p>`;
-    messageInput.value = "";
-    
-    const response =await  fetch("/chat",{
-    	method:"POST",
-    	headers:{"Content-Type": "application/x-www-form-urlencoded"},
-    	body:`message=${encodeURIComponent(text)}`
-    });
+        sendBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const text = messageInput.value.trim();
+            if (!text) return;
+            messages.innerHTML += `<p><strong>Tú:</strong> ${text}</p>`;
+            messageInput.value = "";
 
-    const data = await response.json();
-    messages.innerHTML+=`<div class="msg bot"><strong>Bot:</strong> ${data.response}</div>`;
-    messages.scrollTop = messages.scrollHeight;
-    })
-  </script>
+            const response = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `message=${encodeURIComponent(text)}`
 
+            });
+
+            const data = await response.json();
+            messages.innerHTML += `<div class="msg bot"><strong>Bot:</strong> ${data.response}</div>`;
+            messages.scrollTop = messages.scrollHeight;
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+    <script src="scripts.js"></script>
 </body>
 
 </html>

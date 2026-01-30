@@ -24,9 +24,7 @@ chat_completion =client.chat.completions.create (
               ' "Columnas":[], \n'
               ' "Condiciones":[],\n'
               ' "Resultado":"",\n'
-    
-            )
-
+                )
         },
         {
             "role":"user",
@@ -35,4 +33,4 @@ chat_completion =client.chat.completions.create (
     ],
     
 )
-print(chat_completion.choices[0].message.content)
+""" print(chat_completion.choices[0].message.content) """

@@ -1,0 +1,12 @@
+flask
+opencv-python
+mediapipe
+pandas
+openpyxl
+numpy
+face-recognition
+opencv-python
+pip install pandas
+pip install openpyxl
+pip install opencv-contrib-python
+pip install flask
