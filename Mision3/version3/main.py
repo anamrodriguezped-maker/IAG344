@@ -10,6 +10,7 @@ if model is None:
 def home():
         return render_template("index.html")
 @app.route("/chat",methods=["POST"])
+
 def chat():
         user_text = request.form.get("message","")
         if not user_text.strip():

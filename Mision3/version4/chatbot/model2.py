@@ -28,7 +28,7 @@ chat_completion =client.chat.completions.create (
         },
         {
             "role":"user",
-            "content":"quiero sumar las ventas por vendedor solo del año 2024"
+            "content":"quiero saber el salario de los nombres del 2026"
         }
     ],
     

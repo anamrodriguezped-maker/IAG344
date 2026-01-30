@@ -1,0 +1,149 @@
+ * {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.body1 {
+    background: #fffbf3;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+header {
+    padding: 5px;
+    background: #6fbf4a;
+    font-family: Arial, Helvetica, sans-serif;
+    
+ }
+
+footer {
+    padding: 2px;
+    background: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+    
+ }
+.container {
+    display: flex;
+    gap: 180px;
+}
+
+.form-box {
+    background: #6fbf4a;
+    width: 320px;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    color: white;
+}
+
+.form-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    margin-bottom: 12px;
+    padding: 10px;
+    border-radius: 6px;
+    border: none;
+}
+
+button {
+    padding: 10px;
+    background: #ffffff;
+    color: #6fbf4a;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #e6e6e6;
+}
+/* Botón flotante */
+#chat-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #6fbf4a;
+  color: white;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Ventana de chat */
+#chat-box {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+#close-chat {
+  cursor: pointer;
+  padding: 10px;
+}
+
+#chat-header {
+  font-size: 18px;
+  background: #6fbf4a;
+  color: white;
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Mensajes */
+#chat-messages {
+  padding: 10px;
+  height: 250px;
+  overflow-y: auto;
+  font-size: 15px;
+}
+
+/* Input */
+#chat-input {
+    display: flex;
+  border-top: 1px solid #ddd;
+}
+#chat-input input {
+  font-size: 12px;
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+}
+
+#chat-input button {
+  font-size: 15px;
+  border: none;
+  background: #6fbf4a;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}

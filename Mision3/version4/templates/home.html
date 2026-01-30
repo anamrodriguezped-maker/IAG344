@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot Inteligente</title>
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/styleshome.css') }}">
+</head>
+
+<body>
+    <h2>Registro de datos</h2>
+
+    <form id="formulario">
+            <input type="text" id="id" placeholder="Tipo de cedula" required>
+    <input type="text" id="NombreCompleto" placeholder="Nombre completo" required>
+    <input type="number" id="edad" placeholder="Edad" required>
+    <input type="email" id="correo" placeholder="Correo" required>
+    <input type="text" id="Cargo" placeholder="Cargo" required>
+    <input type="date" id="Fecha" placeholder="Fecha" required>
+    <input type="datetime" id="Hora" placeholder="Hora" required>
+    <input type="number" id="Salario" placeholder="Salario" required>
+
+        <button type="submit">Agregar</button>
+    </form>
+
+    <button onclick="exportarExcel()">Exportar a Excel</button>
+
+    <!-- Botón flotante -->
+    <div id="chat-button"> <img src="/static/img/asistente.png" alt="asistente" width="80%" height="80%">
+        <!-- <img src="img/asistente.png" alt="asistente" width="80%" height="80%"> -->
+    </div>
+
+    <!-- Ventana de chat -->
+    <div id="chat-box">
+        <div id="chat-header">
+            <span><strong>Chat</strong></span>
+            <button id="close-chat">✖️</button>
+        </div>
+
+        <div id="chat-messages">
+            <p><strong>Bot:</strong> Hola 💕 ¿En qué puedo ayudarte?</p>
+        </div>
+
+        <div id="chat-input">
+            <input type="text" id="message" placeholder="Escribe tu mensaje..." />
+            <button id="send"><strong>Enviar</strong></button>
+        </div>
+    </div>
+    <!-- prueba icono -->
+
+    <script>
+        const chatButton = document.getElementById("chat-button");
+        const chatBox = document.getElementById("chat-box");
+        const closeChat = document.getElementById("close-chat");
+        const sendBtn = document.getElementById("send");
+        const messageInput = document.getElementById("message");
+        const messages = document.getElementById("chat-messages");
+
+        chatButton.addEventListener("click", () => {
+            chatBox.style.display = "flex";
+        });
+
+        closeChat.addEventListener("click", () => {
+            chatBox.style.display = "none";
+        });
+
+        sendBtn.addEventListener("click", async (e) => {
+            e.preventDefault();
+            const text = messageInput.value.trim();
+            if (!text) return;
+            messages.innerHTML += `<p><strong>Tú:</strong> ${text}</p>`;
+            messageInput.value = "";
+
+            const response = await fetch("/chat", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: `message=${encodeURIComponent(text)}`
+
+            });
+
+            const data = await response.json();
+            messages.innerHTML += `<div class="msg bot"><strong>Bot:</strong> ${data.response}</div>`;
+            messages.scrollTop = messages.scrollHeight;
+        })
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+      <script src="{{ url_for('static', filename='js/scriptshome.js') }}"></script>
+</body>
+
+</html>

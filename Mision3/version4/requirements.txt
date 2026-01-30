@@ -1,3 +1,4 @@
-openpyxl
-pytest
-pyinstaller
+pip install pandas
+pip install openpyxl
+pip install opencv-contrib-python
+pip install flask

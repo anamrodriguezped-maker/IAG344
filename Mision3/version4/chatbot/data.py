@@ -36,7 +36,7 @@ training_data = [
     ("servicio", "Es un gusto brindarte nuestro servicio profesional 💼."),
     ("bienvenido", "¡Bienvenido(a)! 😊 Gracias por confiar en nuestro equipo contable."),
     ("consulta financiera", "Con gusto te acompañamos en tu consulta financiera 💙."),
-    ("apoyo", "Cuenta con nosotros para apoyarte en tus procesos contables 🤍."),
-    ("asesoría contable", "Estamos aquí para asesorarte con claridad y confianza 📊."),
-    ("empresa", "Gracias por contactar a nuestra firma contable 🏢.")
+    ("inicio", "Para iniciar sersión necesitas: Un usuario y una contraseña 🤍."),
+    ("Sesion", "Para iniciar sesión, necesitamos que te registres primero. ¿Deseas registrarte?"),
+    ("Registro", "Para registrar tu información, se requiere lo siguiente: Un usuario, un correo electronico y una contraseña"),
 ]
