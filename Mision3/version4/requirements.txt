@@ -1,4 +1,10 @@
-pip install pandas
-pip install openpyxl
-pip install opencv-contrib-python
-pip install flask
+flask
+opencv-python
+mediapipe
+pandas
+openpyxl
+numpy
+face-recognition
+pandas
+opencv-contrib-python
+flask

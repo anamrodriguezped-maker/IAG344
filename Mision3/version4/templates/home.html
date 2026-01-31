@@ -1,92 +1,385 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
+    <title>Sistema Contable IA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot Inteligente</title>
-    <!-- <link rel="stylesheet" href="styles.css"> -->
-     <link rel="stylesheet" href="{{ url_for('static', filename='css/styleshome.css') }}">
+<link rel="icon" href="{{ url_for('static', filename='img/icono.png') }}"> 
+    
+<!--  <link rel="stylesheet" href="styles.css"> -->
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesindex.css') }}">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    
+    <style>
+
+        :root{
+            --verde:#6fbf4a;
+            --verde-oscuro:#4a9c32;
+            --claro:#e8f5e9;
+            --gris:#f5f5f5;
+        }
+
+        *{
+            box-sizing:border-box;
+            font-family:'Poppins', sans-serif;
+        }
+
+        body{
+            margin:0;
+            background:var(--gris);
+        }
+
+        /* HEADER */
+        header{
+            background:linear-gradient(to right, var(--verde), var(--verde-oscuro));
+            color:white;
+            padding:25px;
+            text-align:center;
+            font-size:30px;
+            font-weight:600;
+            letter-spacing:1px;
+        }
+
+        /* CARRUSEL */
+        .carousel{
+            width:100%;
+            height:220px;
+            overflow:hidden;
+            position:relative;
+        }
+
+        .slides{
+            display:flex;
+            width:300%;
+            animation:slide 15s infinite;
+        }
+
+        .slide{
+            width:100%;
+            flex-shrink:0;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            color:white;
+            font-size:26px;
+            font-weight:600;
+        }
+
+        .slide:nth-child(1){
+            background:linear-gradient(to right,#6fbf4a,#4a9c32);
+        }
+
+        .slide:nth-child(2){
+            background:linear-gradient(to right,#43cea2,#185a9d);
+        }
+
+        .slide:nth-child(3){
+            background:linear-gradient(to right,#11998e,#38ef7d);
+        }
+
+        @keyframes slide{
+            0%{transform:translateX(0);}
+            33%{transform:translateX(-100%);}
+            66%{transform:translateX(-200%);}
+            100%{transform:translateX(0);}
+        }
+
+        /* CONTENEDOR */
+        .container{
+            max-width:1100px;
+            margin:auto;
+            padding:40px 20px;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+            gap:25px;
+        }
+
+        /* TARJETAS */
+        .card{
+            background:white;
+            border-radius:15px;
+            padding:25px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.1);
+            transition:0.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+        }
+
+        .card h2{
+            margin-top:0;
+            color:var(--verde-oscuro);
+            border-bottom:2px solid var(--claro);
+            padding-bottom:10px;
+            font-size:20px;
+        }
+
+        /* FORMULARIOS */
+        form{
+            display:flex;
+            flex-direction:column;
+            gap:15px;
+        }
+
+        input{
+            padding:12px;
+            border:1px solid #ccc;
+            border-radius:6px;
+            font-size:14px;
+        }
+
+        input:focus{
+            outline:none;
+            border-color:var(--verde);
+            box-shadow:0 0 5px rgba(111,191,74,0.4);
+        }
+
+        /* BOTONES */
+        .btn-secundario
+        {
+            background: linear-gradient(135deg, #6fbf4a, #4a9c32);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        /* Hover */
+        .btn-secundario:hover
+        {
+            background: linear-gradient(135deg, #4a9c32, #388E3C);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+        }
+
+        /* Click */
+        .btn-secundario:active{
+            transform: scale(0.97);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+        }
+
+        /* RESULTADO */
+        .resultado{
+            background:var(--claro);
+            padding:15px;
+            border-radius:10px;
+            margin-top:15px;
+            text-align:center;
+            font-size:16px;
+        }
+
+        /* FOOTER */
+        footer{
+            background:#2f2f2f;
+            color:white;
+            text-align:center;
+            padding:20px;
+            font-size:13px;
+            margin-top:40px;
+        }
+
+        footer span{
+            color:var(--verde);
+            font-weight:600;
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:600px)
+        {
+            header
+            {
+                font-size:22px;
+            }
+            
+            .slide
+            {
+                font-size:20px;
+                padding:15px;
+                text-align:center;
+            }
+        }
+
+        .btn-secundario 
+        {
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+
+            width: auto;              /* Ya NO ocupa toda la página */
+            display: inline-block;
+
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        /* Efecto al pasar el mouse */
+        .btn-secundario:hover 
+        {
+            background: linear-gradient(135deg, #43A047, #1B5E20);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+        }
+
+        /* Efecto al hacer clic */
+        .btn-secundario:active {
+            transform: scale(0.96);
+        }
+
+        
+    </style> 
 </head>
 
+
 <body>
-    <h2>Registro de datos</h2>
 
-    <form id="formulario">
-            <input type="text" id="id" placeholder="Tipo de cedula" required>
-    <input type="text" id="NombreCompleto" placeholder="Nombre completo" required>
-    <input type="number" id="edad" placeholder="Edad" required>
-    <input type="email" id="correo" placeholder="Correo" required>
-    <input type="text" id="Cargo" placeholder="Cargo" required>
-    <input type="date" id="Fecha" placeholder="Fecha" required>
-    <input type="datetime" id="Hora" placeholder="Hora" required>
-    <input type="number" id="Salario" placeholder="Salario" required>
+    <!-- HEADER -->
+    <header>
+        🤖 SISTEMA CONTABLE IA
+    </header>
+    <!-- Ventana de chat -->
+<div id="chat-box">
+  <div id="chat-header" >
+    <span><strong>Chat</strong></span>
+    <button id="close-chat">✖️</button>
+  </div>
 
-        <button type="submit">Agregar</button>
+  <div id="chat-messages">
+    <p><strong>Bot:</strong> Hola 💕 ¿En qué puedo ayudarte?</p>
+  </div>
+
+  <div id="chat-input">
+    <input type="text" id="message" placeholder="Escribe tu mensaje..." />
+    <button id="send"><strong>Enviar</strong></button>
+  </div>
+</div>
+ <!-- prueba icono -->
+
+    <!-- CONTENEDOR -->
+    <div class="container">
+
+
+        <!-- REGISTRO -->
+        <div class="card">
+            <h2>📸 Registrar Empleado</h2>
+
+            <form action="/capturar" method="POST">
+
+                <input type="number" name="id" placeholder="ID del empleado" required>
+
+                <button type="submit">
+                    Capturar Rostro
+                </button>
+
+            </form>
+        </div>
+
+
+        <!-- ENTRENAR -->
+        <div class="card">
+            <h2>🧠 Entrenar Modelo</h2>
+
+            <form action="/entrenar" method="POST">
+
+                <button type="submit">
+                    Entrenar Reconocimiento
+                </button>
+
+            </form>
+        </div>
+
+
+        <!-- ASISTENCIA -->
+        <div class="card">
+            <h2>🎥 Registrar Asistencia</h2>
+
+            <form action="/reconocer" method="POST">
+
+                <input type="text" name="nombre" placeholder="Nombre del empleado" required>
+
+                <input type="number" step="0.01" name="salario" placeholder="Salario por día" required>
+
+                <button type="submit">
+                    Reconocer Rostro
+                </button>
+
+            </form>
+        </div>
+
+
+        <!-- NOMINA -->
+        <div class="card">
+            <h2>📊 Calcular Nómina</h2>
+
+            <form action="/nomina" method="POST">
+
+                <input type="number" name="id" placeholder="ID del empleado" required>
+
+                <input type="number" name="mes" placeholder="Mes (1-12)" required>
+
+                <input type="number" name="anio" placeholder="Año" required>
+
+                <button type="submit">
+                    Calcular Pago
+                </button>
+
+            </form>
+
+
+            {% if dias is defined and total is defined %}
+
+            <div class="resultado">
+
+                <p><strong>Días trabajados:</strong> {{ dias }}</p>
+
+                <p><strong>Total a pagar:</strong> ${{ total }}</p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+    
+    <form action="/abrir_consultar" method="GET">
+        <button type="submit" class="btn-secundario">
+            📄 Abrir Consulta de Empleados
+        </button>
     </form>
 
-    <button onclick="exportarExcel()">Exportar a Excel</button>
 
-    <!-- Botón flotante -->
-    <div id="chat-button"> <img src="/static/img/asistente.png" alt="asistente" width="80%" height="80%">
-        <!-- <img src="img/asistente.png" alt="asistente" width="80%" height="80%"> -->
-    </div>
+    <!-- FOOTER -->
+    <footer>
 
-    <!-- Ventana de chat -->
-    <div id="chat-box">
-        <div id="chat-header">
-            <span><strong>Chat</strong></span>
-            <button id="close-chat">✖️</button>
-        </div>
+        COPYRIGHT © 2026 - BOOTCAMP DE IA <br>
 
-        <div id="chat-messages">
-            <p><strong>Bot:</strong> Hola 💕 ¿En qué puedo ayudarte?</p>
-        </div>
+        <span>
+            Ana Rodriguez | Isabel Alzate | Jaime Alzate | Juan Fernando Díaz | Juan David Alvarez
+        </span>
 
-        <div id="chat-input">
-            <input type="text" id="message" placeholder="Escribe tu mensaje..." />
-            <button id="send"><strong>Enviar</strong></button>
-        </div>
-    </div>
-    <!-- prueba icono -->
-
-    <script>
-        const chatButton = document.getElementById("chat-button");
-        const chatBox = document.getElementById("chat-box");
-        const closeChat = document.getElementById("close-chat");
-        const sendBtn = document.getElementById("send");
-        const messageInput = document.getElementById("message");
-        const messages = document.getElementById("chat-messages");
-
-        chatButton.addEventListener("click", () => {
-            chatBox.style.display = "flex";
-        });
-
-        closeChat.addEventListener("click", () => {
-            chatBox.style.display = "none";
-        });
-
-        sendBtn.addEventListener("click", async (e) => {
-            e.preventDefault();
-            const text = messageInput.value.trim();
-            if (!text) return;
-            messages.innerHTML += `<p><strong>Tú:</strong> ${text}</p>`;
-            messageInput.value = "";
-
-            const response = await fetch("/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: `message=${encodeURIComponent(text)}`
-
-            });
-
-            const data = await response.json();
-            messages.innerHTML += `<div class="msg bot"><strong>Bot:</strong> ${data.response}</div>`;
-            messages.scrollTop = messages.scrollHeight;
-        })
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-      <script src="{{ url_for('static', filename='js/scriptshome.js') }}"></script>
+    </footer>
+     <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+<script src="{{ url_for('static', filename='js/scriptsindex.js') }}"></script>
 </body>
-
 </html>

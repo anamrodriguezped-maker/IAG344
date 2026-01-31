@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Análisis Sistema Contable IA</title>
+  <link rel="icon" href="{{ url_for('static', filename='img/icono.png') }}"> 
+
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #6fbf4a;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #6fbf4a;
+            border-left: 5px solid #66bb6a;
+            padding-left: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #1b5e20;
+        }
+
+        input[type="file"], select {
+            width: 100%;
+            margin-top: 8px;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #c8e6c9;
+        }
+
+        button {
+            background: #43a047;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            margin-top: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #6fbf4a;
+        }
+
+        .bloque {
+            margin-top: 20px;
+        }
+
+        .resultado {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-left: 5px solid #6fbf4a;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            color: #6fbf4a;
+            font-size: 14px;
+        }
+
+        hr {
+            margin: 40px 0;
+            border: none;
+            border-top: 2px dashed #a5d6a7;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📈 Análisis Sistema Contable IA</h1>
+    <p>Análisis de datos desde Excel</p>
+</header>
+
+<main>
+
+    <h2>📊 Suma Salario</h2>
+
+    <label>Cargar archivo Excel:</label>
+    <input type="file" id="archivoExcel" accept=".xlsx, .xls">
+
+    <div class="bloque">
+        <label>Selecciona la columna a sumar:</label>
+        <select id="columna" disabled>
+            <option>Primero carga un Excel</option>
+        </select>
+    </div>
+
+    <button onclick="leerExcel()">Sumar columna</button>
+
+    <div id="resultado" class="resultado"></div>
+
+    <hr>
+
+    <h2>📋 Visualización de registro específico</h2>
+
+    <div class="bloque">
+        <label>Selecciona fila:</label>
+        <select id="fila" disabled></select>
+    </div>
+
+    <div class="bloque">
+        <label>Selecciona 4 variables:</label>
+        <select id="c1"></select>
+        <select id="c2"></select>
+        <select id="c3"></select>
+        <select id="c4"></select>
+    </div>
+
+    <button onclick="mostrarFila()">Mostrar fila</button>
+
+    <div id="datosFila" class="resultado"></div>
+
+</main>
+
+<footer>
+ <h2 style="color: rgb(15, 14, 14); margin-left: 2%; font-size: 12px;">COPYRIGHT © 2026 - Presentado para el BOOTCAMP DE IA - Ana Rodriguez / Isabel Alzate / Jaime Alzate / Juan Fernando Díaz / Juan David</h2> 
+</footer>
+
+<!-- ================== SCRIPT (SIN CAMBIOS FUNCIONALES) ================== -->
+<script>
+let datosExcel = [];
+
+document.getElementById("archivoExcel").addEventListener("change", cargarColumnas);
+
+function cargarColumnas() {
+    const archivo = archivoExcel.files[0];
+    if (!archivo) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: "array" });
+        const hoja = workbook.Sheets[workbook.SheetNames[0]];
+
+        datosExcel = XLSX.utils.sheet_to_json(hoja);
+        if (datosExcel.length === 0) return;
+
+        const columnas = Object.keys(datosExcel[0]);
+
+        columna.innerHTML = "";
+        columnas.forEach(col => {
+            const opt = document.createElement("option");
+            opt.value = col;
+            opt.textContent = col;
+            columna.appendChild(opt);
+        });
+        columna.disabled = false;
+
+        fila.innerHTML = "";
+        datosExcel.forEach((_, i) => {
+            const opt = document.createElement("option");
+            opt.value = i;
+            opt.textContent = "Fila " + (i + 1);
+            fila.appendChild(opt);
+        });
+        fila.disabled = false;
+
+        ["c1","c2","c3","c4"].forEach(id => {
+            document.getElementById(id).innerHTML = "";
+            columnas.forEach(col => {
+                const opt = document.createElement("option");
+                opt.value = col;
+                opt.textContent = col;
+                document.getElementById(id).appendChild(opt);
+            });
+        });
+    };
+
+    reader.readAsArrayBuffer(archivo);
+}
+
+function leerExcel() {
+    const col = columna.value;
+    let suma = 0;
+    datosExcel.forEach(f => suma += Number(f[col] || 0));
+    resultado.innerText =  `Suma de la columna "${col}": ${suma}`;
+}
+
+function mostrarFila() {
+    const r = datosExcel[fila.value];
+    datosFila.innerHTML = `
+        ${c1.value}: ${r[c1.value]}<br>
+        ${c2.value}: ${r[c2.value]}<br>
+        ${c3.value}: ${r[c3.value]}<br>
+        ${c4.value}: ${r[c4.value]}
+    `;
+}
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</body>
+</html>
