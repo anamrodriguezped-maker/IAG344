@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Sistema Contable IA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="{{ url_for('static', filename='img/icono.png') }}"> 
+    <link rel="icon" href="{{ url_for('static', filename='img/ICONOS.png') }}"> 
     
 <!--  <link rel="stylesheet" href="styles.css"> -->
-   <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesindex.css') }}">
+   <link rel="stylesheet" href="{{ url_for('static', filename='css/styleshome.css') }}">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -257,7 +257,11 @@
     <header>
         🤖 SISTEMA CONTABLE IA
     </header>
-    <!-- Ventana de chat -->
+
+
+    <!-- CONTENEDOR -->
+    <div class="container">
+            <!-- Ventana de chat -->
 <div id="chat-box">
   <div id="chat-header" >
     <span><strong>Chat</strong></span>
@@ -274,10 +278,6 @@
   </div>
 </div>
  <!-- prueba icono -->
-
-    <!-- CONTENEDOR -->
-    <div class="container">
-
 
         <!-- REGISTRO -->
         <div class="card">
@@ -367,6 +367,13 @@
             📄 Abrir Consulta de Empleados
         </button>
     </form>
+<div class="analisis" style="margin-top: 2%;">
+    <form action="/analisisDatos" method="GET">
+        <button type="submit" class="btn-secundario">
+            📊 Abrir Análisis de Datos
+        </button>
+    </div>
+    </form>
 
 
     <!-- FOOTER -->
@@ -380,6 +387,6 @@
 
     </footer>
      <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
-<script src="{{ url_for('static', filename='js/scriptsindex.js') }}"></script>
+<script src="{{ url_for('static', filename='js/scriptshome.js') }}"></script>
 </body>
 </html>

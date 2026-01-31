@@ -4,7 +4,9 @@ mediapipe
 pandas
 openpyxl
 numpy
-face-recognition
+
 pandas
 opencv-contrib-python
 flask
+groq
+scikit-learn

@@ -1,9 +1,13 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 from chatbot.data import training_data
 from chatbot.model import build_and_train_model, predict_answer, load_model
 from chatbot.model2 import chat_completion as groq_chat
 import pandas as pd
 import json
+import sistema   # tu archivo sistema.py
+import subprocess
+import sys
+import os
 
 # =====================================
 # Cargar Excel (base de datos)
@@ -75,6 +79,63 @@ def home():
 @app.route("/homechatbot")
 def homechatbot():
     return render_template("home.html")
+
+@app.route("/analisisDatos")
+def analisisDatos():
+    return render_template("analisis.html")
+
+@app.route("/abrir_consultar")
+def abrir_consultar():
+
+    ruta = os.path.join(os.getcwd(), "consultar.py")
+
+    subprocess.Popen([sys.executable, ruta])
+
+    return redirect("/")
+
+@app.route("/capturar", methods=["POST"])
+def capturar():
+
+    id_emp = int(request.form["id"])
+    sistema.capturar_rostro(id_emp)
+
+    return redirect(url_for("index"))
+
+
+@app.route("/entrenar", methods=["POST"])
+def entrenar():
+
+    sistema.entrenar()
+
+    return redirect(url_for("index"))
+
+
+@app.route("/reconocer", methods=["POST"])
+def reconocer():
+
+    nombre = request.form["nombre"]
+    salario = float(request.form["salario"])
+
+    sistema.reconocer(nombre, salario)
+
+    return redirect(url_for("index"))
+
+
+@app.route("/nomina", methods=["POST"])
+def nomina():
+
+    id_emp = int(request.form["id"])
+    mes = int(request.form["mes"])
+    anio = int(request.form["anio"])
+
+    dias, total = sistema.calcular_nomina(id_emp, mes, anio)
+
+    return render_template(
+        "index.html",
+        dias=dias,
+        total=total
+    )
+
 
 @app.route("/chat", methods=["POST"])
 def chat():
