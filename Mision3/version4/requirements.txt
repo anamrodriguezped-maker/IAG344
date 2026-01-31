@@ -4,7 +4,7 @@ mediapipe
 pandas
 openpyxl
 numpy
-
+face-recognition
 pandas
 opencv-contrib-python
 flask
