@@ -77,6 +77,7 @@ if model is None:
 def home():
     return render_template("index.html")
 
+
 @app.route("/homechatbot")
 def homechatbot():
     return render_template("home.html")
